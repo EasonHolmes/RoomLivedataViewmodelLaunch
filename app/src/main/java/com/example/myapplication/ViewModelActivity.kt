@@ -26,7 +26,7 @@ class ViewModelActivity : AppCompatActivity() {
 //        两个方法相同，viewModels()只是activity的ktx，需要依赖activityktx库
 //        val viewmode: ActViewModel by viewModels()
         val viewmode = ViewModelProvider(this).get(ActViewModel::class.java)
-
+        //注册绑定activity生命周期
         viewmode.currentName.observe(this,{
             binding.textView.text = it
         })
