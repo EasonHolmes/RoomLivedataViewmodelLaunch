@@ -6,8 +6,11 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import com.example.myapplication.databinding.ActivityViewmodelBinding
 import com.example.myapplication.viewmodel.ActViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 //livedata
@@ -34,6 +37,10 @@ class ViewModelActivity : AppCompatActivity() {
             Log.e(TAG, "getTestLivedata().observe===="+it.getNameTest())
         })
 
+        //当viewmode生命周期结束，协程内也会消毁，默认主线程可以加dispatchers
+        viewmode.viewModelScope.launch(Dispatchers.IO) {
+
+        }
         binding.textView.setOnClickListener {
             val anotherName = "GitCode"
             viewmode.currentName.setValue(anotherName)
